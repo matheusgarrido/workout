@@ -1,0 +1,15 @@
+@import "../../assets/colors.scss";
+
+#buttonsRep {
+  & > * {
+    display: block;
+    margin: 10px auto;
+    &:nth-child(2) {
+      background-color: gray;
+    }
+  }
+}
+
+button {
+  margin: 5px 10px;
+}

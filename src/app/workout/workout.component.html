@@ -1,9 +1,34 @@
 <h1>WORKOUT</h1>
-<div>
+<div *ngIf="status === 'notInitialized'; else started">
   <card>
-    <exercise-insert (onInsertExercises)="exercises = $event"></exercise-insert>
+    <exercise-insert
+      (onInsertExercises)="exercises = $event"
+      (onStart)="status = 'exercise'; timer = $event"
+    >
+    </exercise-insert>
   </card>
   <card>
     <exercise-list [exercises]="exercises"></exercise-list>
   </card>
 </div>
+
+<ng-template #started>
+  <div>
+    <card>
+      <exercise-current-information
+        [status]="status"
+        [exercises]="exercises"
+        [timer]="timer"
+      ></exercise-current-information>
+    </card>
+    <div>
+      <card>
+        <timer></timer>
+      </card>
+      <card
+        ><h2>Restart</h2>
+        <button>Finish</button></card
+      >
+    </div>
+  </div>
+</ng-template>

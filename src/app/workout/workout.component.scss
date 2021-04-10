@@ -30,9 +30,23 @@ div {
   & > * {
     flex-grow: 1;
     margin: 10px 20px;
+    flex-basis: 0%;
     justify-content: space-around;
   }
-  &:first-child {
-    flex-grow: 3;
+  & > *:first-child {
+    // height: 100%;
+    flex-basis: 60%;
+  }
+  & > card:nth-child(2) {
+    // height: 100%;
+    flex-basis: 20%;
+  }
+  card ~ div {
+    align-self: stretch;
+    // height: 100%;
+    margin: 0;
+    & > card {
+      width: 100%;
+    }
   }
 }

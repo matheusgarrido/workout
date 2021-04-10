@@ -31,6 +31,7 @@ export class ExerciseInsertComponent implements OnInit {
   restTime: number | null = null;
   filteredExercisesList: string[] = EXERCISES.slice(0, 5);
   @Output() onInsertExercises = new EventEmitter<exerciseType[]>();
+  @Output() onStart = new EventEmitter<number>();
 
   //Refilter the list by input text and exercises added in list
   refilterList() {
@@ -48,6 +49,7 @@ export class ExerciseInsertComponent implements OnInit {
       //If not added
       //If has the current text value
       //If is not the full current text value
+      //Return only the 5 first
       return (
         !exerciseAdded &&
         element
@@ -62,7 +64,6 @@ export class ExerciseInsertComponent implements OnInit {
   inputExerciseData(event: any, dataType: exerciseData) {
     const target = event.target as HTMLTextAreaElement;
     const value = target.value;
-    console.log(this.filteredExercisesList);
     if (dataType === 'exercise') {
       this.currentExercise.exercise = value;
       this.refilterList();
@@ -108,4 +109,11 @@ export class ExerciseInsertComponent implements OnInit {
     }
   }
   ngOnInit(): void {}
+
+  start(event: MouseEvent) {
+    event.preventDefault();
+    if (this.exercises.length && this.restTime && this.restTime > 0) {
+      this.onStart.emit(this.restTime);
+    }
+  }
 }

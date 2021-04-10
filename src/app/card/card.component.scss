@@ -34,4 +34,10 @@
       cursor: pointer;
     }
   }
+
+  & hr {
+    margin: 10px 0;
+    border: 0.1px solid $dividerColor;
+    background-color: $dividerColor;
+  }
 }

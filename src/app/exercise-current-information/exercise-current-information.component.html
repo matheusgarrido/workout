@@ -1,0 +1,25 @@
+<h2>{{ status }}</h2>
+<ng-container [ngSwitch]="status">
+  <div *ngSwitchCase="'exercise'">
+    <p>{{ exercises[currentExercise].exercise }}</p>
+    <p *ngIf="TotalRepetitions > 1; else onlyOne">
+      {{ currentRepetition + 1 }} of
+      {{ exercises[currentExercise].repetitions }} repetitions
+    </p>
+    <ng-template #onlyOne>
+      <p>Only 1 repetition</p>
+    </ng-template>
+    <exercise-current-buttons
+      (btnClick)="buttonClick($event)"
+    ></exercise-current-buttons>
+  </div>
+  <div *ngSwitchCase="'rest'">
+    <p>Take a rest</p>
+    <exercise-current-buttons
+      (btnClick)="buttonClick($event)"
+    ></exercise-current-buttons>
+  </div>
+  <div *ngSwitchDefault>
+    <p>Good job!</p>
+  </div>
+</ng-container>
