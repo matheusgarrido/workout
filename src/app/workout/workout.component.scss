@@ -1,0 +1,38 @@
+@import "../../assets/fonts/fonts.scss";
+@import "../../assets/colors.scss";
+
+@include fontRevamped;
+
+:host {
+  height: 100vh;
+  background-color: red;
+  width: 10px;
+  border: red;
+}
+
+h1 {
+  font-family: "Revamped", Arial, Helvetica, sans-serif;
+  color: $secondaryColor;
+  text-shadow: $shadowSecondaryColor 3px 3px 6px;
+  border: #000 3px;
+  text-align: center;
+}
+
+div {
+  display: flex;
+  flex-basis: auto;
+  flex-flow: wrap;
+  width: 80vw;
+  flex: 500px;
+  flex-grow: 1;
+  margin: auto;
+  flex-direction: row;
+  & > * {
+    flex-grow: 1;
+    margin: 10px 20px;
+    justify-content: space-around;
+  }
+  &:first-child {
+    flex-grow: 3;
+  }
+}

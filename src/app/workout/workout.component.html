@@ -1,0 +1,9 @@
+<h1>WORKOUT</h1>
+<div>
+  <card>
+    <exercise-insert (onInsertExercises)="exercises = $event"></exercise-insert>
+  </card>
+  <card>
+    <exercise-list [exercises]="exercises"></exercise-list>
+  </card>
+</div>

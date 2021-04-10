@@ -1,0 +1,6 @@
+@mixin fontRevamped {
+  @font-face {
+    font-family: "Revamped";
+    src: url("./Revamped.otf");
+  }
+}

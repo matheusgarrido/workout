@@ -1,0 +1,50 @@
+<h2>Exercise</h2>
+<form>
+  <label>
+    Exercise:
+    <input
+      type="text"
+      placeholder="Name of exercise"
+      value="{{ currentExercise.exercise }}"
+      (input)="inputExerciseData($event, 'exercise')"
+      list="exercises"
+    />
+    <datalist id="exercises">
+      <option *ngFor="let exe of filteredExercisesList">
+        {{ exe }}
+      </option>
+    </datalist>
+  </label>
+  <label>
+    Rep:
+    <input
+      type="number"
+      placeholder="Repetitions"
+      value="{{ currentExercise.repetitions }}"
+      (input)="inputExerciseData($event, 'repetitions')"
+  /></label>
+  <label>
+    Time:
+    <input
+      type="number"
+      placeholder="Seconds by repetitions"
+      value="{{ currentExercise.time }}"
+      (input)="inputExerciseData($event, 'time')"
+    />
+  </label>
+  <button (click)="addValue($event)">ADD</button>
+</form>
+<hr />
+<h2>Rest</h2>
+<form>
+  <label>
+    Time:
+    <input
+      type="number"
+      placeholder="Rest time in seconds"
+      value="{{ restTime }}"
+      (input)="inputExerciseData($event, 'rest')"
+    />
+  </label>
+  <button>Start</button>
+</form>

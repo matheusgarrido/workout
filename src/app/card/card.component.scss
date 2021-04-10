@@ -1,0 +1,37 @@
+@import "../../assets/fonts/fonts.scss";
+@import "../../assets/colors.scss";
+
+@include fontRevamped;
+
+:host {
+  display: block;
+  margin: 10px auto;
+  border-radius: 30px;
+  text-align: center;
+  border: 6px solid $borderColor;
+  background-color: $bgCardColor;
+  padding: 10px;
+}
+
+::ng-deep {
+  & * {
+    font-family: Helvetica, sans-serif;
+  }
+  & h2 {
+    margin-top: 0;
+    font-family: "Revamped", Arial, Helvetica, sans-serif;
+    font-weight: normal;
+    text-transform: uppercase;
+  }
+  & button {
+    width: 100px;
+    background-color: $buttonColor;
+    color: $buttonTextColor;
+    border: 2px solid $borderColor;
+    border-radius: 3px;
+    text-transform: uppercase;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
