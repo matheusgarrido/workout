@@ -22,6 +22,7 @@ export class ExerciseCurrentInformationComponent implements OnInit, OnChanges {
   @Input() status: statusWorkout = 'exercise';
   @Input() exercises: exerciseType[] = [];
   @Input() timer: number = 0;
+  @Output() setDisplayTime = new EventEmitter<number>();
   currentExercise = 0;
   currentRepetition = 0;
 
@@ -46,6 +47,24 @@ export class ExerciseCurrentInformationComponent implements OnInit, OnChanges {
       case 'next':
         this.nextExercise();
         break;
+    }
+    this.updateDisplayTime();
+  }
+
+  updateDisplayTime() {
+    switch (this.status) {
+      case 'exercise':
+        console.log(this.exercises[this.currentExercise].time);
+        this.setDisplayTime.emit(
+          this.exercises[this.currentExercise].time as number
+        );
+        break;
+      case 'rest':
+        console.log(this.timer);
+        this.setDisplayTime.emit(this.timer as number);
+        break;
+      default:
+        this.setDisplayTime.emit(0);
     }
   }
   changeRepetition() {
@@ -90,8 +109,7 @@ export class ExerciseCurrentInformationComponent implements OnInit, OnChanges {
     this.currentExercise--;
   }
   ngOnInit(): void {
-    console.log(this.exercises);
-    console.log(this.timer);
+    this.setDisplayTime.emit(this.exercises[0].time as number);
   }
   ngOnChanges(changes: SimpleChanges): void {
     this.status = changes.status.currentValue;

@@ -19,16 +19,17 @@
         [status]="status"
         [exercises]="exercises"
         [timer]="timer"
+        (setDisplayTime)="setDisplayTime($event)"
       ></exercise-current-information>
     </card>
     <div>
       <card>
-        <timer></timer>
+        <timer [displayTime]="displayTime"></timer>
       </card>
-      <card
-        ><h2>Restart</h2>
-        <button>Finish</button></card
-      >
+      <card>
+        <h2>Restart</h2>
+        <button>Finish</button>
+      </card>
     </div>
   </div>
 </ng-template>

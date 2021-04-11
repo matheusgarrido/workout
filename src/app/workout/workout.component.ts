@@ -16,9 +16,15 @@ export type statusWorkout = 'notInitialized' | 'exercise' | 'rest' | 'finished';
 })
 export class WorkoutComponent implements OnChanges {
   @Input() exercises: exerciseType[] = [];
+  @Input() displayTime: number = 0;
   // status: statusWorkout = 'notInitialized';
   timer: number = 0;
   status: statusWorkout = 'notInitialized';
+
+  setDisplayTime(value: number) {
+    // console.log(value);
+    this.displayTime = value;
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
     console.log(changes);
