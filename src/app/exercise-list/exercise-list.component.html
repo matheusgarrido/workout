@@ -1,11 +1,16 @@
 <h2>List</h2>
 
-<ul *ngIf="exercises.length; else emptyList">
-  <li *ngFor="let ex of exercises; let i = index" (click)="removeExercises(i)">
-    {{ ex.exercise }}
-    <span class="material-icons"> delete </span>
-  </li>
-</ul>
+<ng-container *ngIf="exercises.length; else emptyList">
+  <ul>
+    <li
+      *ngFor="let ex of exercises; let i = index"
+      (click)="removeExercises(i)"
+    >
+      {{ ex.exercise }}
+      <span class="material-icons"> delete </span>
+    </li>
+  </ul>
+</ng-container>
 <ng-template #emptyList>
   <p>List empty</p>
 </ng-template>
