@@ -2,8 +2,10 @@
   <button (click)="continueExercise()">Continue</button>
   <button (click)="restartExercise()">Restart</button>
 </div>
-<hr />
-<div>
-  <button (click)="previousExercise()">Previous</button>
-  <button (click)="nextExercise()">Next</button>
-</div>
+<ng-container *ngIf="status === 'exercise'">
+  <hr />
+  <div>
+    <button (click)="previousExercise()">Previous</button>
+    <button (click)="nextExercise()">Next</button>
+  </div>
+</ng-container>

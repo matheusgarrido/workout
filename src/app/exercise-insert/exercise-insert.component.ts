@@ -1,4 +1,12 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Output,
+  EventEmitter,
+  Input,
+  OnChanges,
+  SimpleChanges,
+} from '@angular/core';
 
 const EXERCISES = [
   'Pushup',
@@ -21,13 +29,13 @@ type exerciseData = 'exercise' | 'time' | 'repetitions' | 'rest';
   templateUrl: './exercise-insert.component.html',
   styleUrls: ['./exercise-insert.component.scss'],
 })
-export class ExerciseInsertComponent implements OnInit {
+export class ExerciseInsertComponent implements OnInit, OnChanges {
   currentExercise: exerciseType = {
     exercise: '',
     time: null,
     repetitions: null,
   };
-  exercises: exerciseType[] = [];
+  @Input() exercises: exerciseType[] = [];
   restTime: number | null = null;
   filteredExercisesList: string[] = EXERCISES.slice(0, 5);
   @Output() onInsertExercises = new EventEmitter<exerciseType[]>();
@@ -109,6 +117,10 @@ export class ExerciseInsertComponent implements OnInit {
     }
   }
   ngOnInit(): void {}
+  ngOnChanges(changes: SimpleChanges) {
+    this.exercises = changes.exercises.currentValue;
+    this.refilterList();
+  }
 
   start(event: MouseEvent) {
     event.preventDefault();

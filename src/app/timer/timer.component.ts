@@ -14,13 +14,14 @@ import { timer } from 'rxjs';
 })
 export class TimerComponent implements OnChanges {
   @Input() displayTime: number = 0;
+  @Input() currentRep: number[] = [0, 0];
   timeLeft: number = 0;
   interval: ReturnType<typeof setInterval> = 0;
 
   countdown() {
     if (this.timeLeft === this.displayTime) clearInterval(this.interval);
     const timerPointerRotate = document.getElementById('pointer');
-    this.timeLeft = this.displayTime;
+    // this.timeLeft = this.displayTime;
     console.log(this.timeLeft);
     if (timerPointerRotate) {
       let rotation = this.timeLeft * 6;
@@ -44,8 +45,12 @@ export class TimerComponent implements OnChanges {
     }
   }
   ngOnChanges(changes: SimpleChanges): void {
-    this.displayTime = changes.displayTime.currentValue;
-    this.timeLeft = changes.displayTime.currentValue;
+    if (changes.displayTime) {
+      this.displayTime = changes.displayTime.currentValue;
+      this.timeLeft = changes.displayTime.currentValue;
+    } else {
+      this.timeLeft = this.displayTime;
+    }
     clearInterval(this.interval);
     const timerPointerRotate = document.getElementById('pointer');
     setTimeout(() => {

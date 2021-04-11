@@ -10,12 +10,14 @@
       <p>Only 1 repetition</p>
     </ng-template>
     <exercise-current-buttons
+      [status]="status"
       (btnClick)="buttonClick($event)"
     ></exercise-current-buttons>
   </div>
   <div *ngSwitchCase="'rest'">
     <p>Take a rest</p>
     <exercise-current-buttons
+      [status]="status"
       (btnClick)="buttonClick($event)"
     ></exercise-current-buttons>
   </div>

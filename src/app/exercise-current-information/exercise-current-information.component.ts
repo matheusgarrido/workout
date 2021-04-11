@@ -10,7 +10,6 @@ import {
 } from '@angular/core';
 import { statusWorkout } from '../workout/workout.component';
 import { exerciseType } from '../exercise-insert/exercise-insert.component';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { buttonList } from '../exercise-current-buttons/exercise-current-buttons.component';
 
 @Component({
@@ -23,6 +22,7 @@ export class ExerciseCurrentInformationComponent implements OnInit, OnChanges {
   @Input() exercises: exerciseType[] = [];
   @Input() timer: number = 0;
   @Output() setDisplayTime = new EventEmitter<number>();
+  @Output() setCurrentRep = new EventEmitter<number[]>();
   currentExercise = 0;
   currentRepetition = 0;
 
@@ -95,21 +95,26 @@ export class ExerciseCurrentInformationComponent implements OnInit, OnChanges {
       this.currentExercise = 0;
       this.status = 'finished';
     }
+    this.setCurrentRep.emit([this.currentRepetition, this.currentExercise]);
   }
   restartExercise() {
     this.status = 'exercise';
     this.currentRepetition = 0;
+    this.setCurrentRep.emit([this.currentRepetition, this.currentExercise]);
   }
   nextExercise() {
     this.changeExercise();
     this.currentExercise++;
+    this.setCurrentRep.emit([this.currentRepetition, this.currentExercise]);
   }
   previousExercise() {
     this.changeExercise();
     this.currentExercise--;
+    this.setCurrentRep.emit([this.currentRepetition, this.currentExercise]);
   }
   ngOnInit(): void {
     this.setDisplayTime.emit(this.exercises[0].time as number);
+    this.setCurrentRep.emit([this.currentRepetition, this.currentExercise]);
   }
   ngOnChanges(changes: SimpleChanges): void {
     this.status = changes.status.currentValue;

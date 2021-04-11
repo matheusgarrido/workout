@@ -1,35 +1,54 @@
 <h1>WORKOUT</h1>
-<div *ngIf="status === 'notInitialized'; else started">
-  <card>
-    <exercise-insert
-      (onInsertExercises)="exercises = $event"
-      (onStart)="status = 'exercise'; timer = $event"
-    >
-    </exercise-insert>
-  </card>
-  <card>
-    <exercise-list [exercises]="exercises"></exercise-list>
-  </card>
-</div>
-
-<ng-template #started>
-  <div>
+<ng-container [ngSwitch]="status">
+  <!-- Before start -->
+  <div *ngSwitchCase="'notInitialized'">
     <card>
-      <exercise-current-information
-        [status]="status"
+      <exercise-insert
         [exercises]="exercises"
-        [timer]="timer"
-        (setDisplayTime)="setDisplayTime($event)"
-      ></exercise-current-information>
+        (onInsertExercises)="exercises = $event"
+        (onStart)="status = 'exercise'; timer = $event"
+      >
+      </exercise-insert>
     </card>
+    <card>
+      <exercise-list [exercises]="exercises"></exercise-list>
+    </card>
+  </div>
+  <!-- After finish-->
+  <ng-container *ngSwitchCase="'finished'">
     <div>
       <card>
-        <timer [displayTime]="displayTime"></timer>
-      </card>
-      <card>
-        <h2>Restart</h2>
-        <button>Finish</button>
+        <h2>exercises</h2>
+        <p>Great job!</p>
+        <button (click)="status = 'notInitialized'">Restart</button>
       </card>
     </div>
-  </div>
-</ng-template>
+  </ng-container>
+  <!-- Exercises or rest-->
+  <ng-container *ngSwitchDefault>
+    <div>
+      <card>
+        <exercise-current-information
+          [status]="status"
+          [exercises]="exercises"
+          [timer]="timer"
+          (setCurrentRep)="currentRep = $event"
+          (setDisplayTime)="setDisplayTime($event)"
+        ></exercise-current-information>
+      </card>
+      <div>
+        <card>
+          <timer [displayTime]="displayTime" [currentRep]="currentRep"></timer>
+        </card>
+        <card>
+          <h2>Give up</h2>
+          <button (click)="status = 'notInitialized'">Finish</button>
+        </card>
+      </div>
+    </div>
+  </ng-container>
+</ng-container>
+
+<footer>
+  <p>Developed by Matheus Garrido &copy; {{ year }}</p>
+</footer>
