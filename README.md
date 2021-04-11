@@ -1,27 +1,13 @@
-# Workout
+<h1 align="center">WorkOut</h1>
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.7.
+<p>Developed by me to a challenge at IGTI's frontend bootcamp using Angular and SCSS.</p>
+<p>Click here to play: <a href="https://matheusgarrido.github.io/workout/">https://matheusgarrido.github.io/workout/</a></p>
 
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+<br/>
+<h3>Features</h3>
+<p><b>Exercise:</b> Add exercise, its number repetitions and time of each repetitions.</p>
+<p><b>List:</b> Displays the exercises list to workout and enables user to remove an exercise from list.</p>
+<p><b>Visual Timer:</b> Displays a dynamic timer that alerts blinking while the time exceeded the foreseen time of the current activity.</p>
+<p><b>Give it up:</b> Enables give up the exercises.</p>
+<p><b>Change:</b> Enables jumps to previous or next exercise.</p>
+<p><b>Restart:</b> Enables restart the current exercise.</p>
