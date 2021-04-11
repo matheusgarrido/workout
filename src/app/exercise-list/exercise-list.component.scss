@@ -1,3 +1,5 @@
+@import "../../assets/colors.scss";
+
 :host {
   display: block;
 }
@@ -9,8 +11,13 @@ ul {
 li {
   list-style-type: none;
   width: max-content;
-  margin: auto;
+  margin: 10px auto;
   &:hover {
     cursor: pointer;
+    color: $buttonColor;
+  }
+  span {
+    vertical-align: middle;
+    margin-bottom: 1px;
   }
 }

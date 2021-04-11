@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { exerciseType } from '../exercise-insert/exercise-insert.component';
 
 @Component({
@@ -8,4 +8,8 @@ import { exerciseType } from '../exercise-insert/exercise-insert.component';
 })
 export class ExerciseListComponent {
   @Input() exercises: exerciseType[] = [];
+
+  removeExercises(index: number) {
+    this.exercises.splice(index, 1);
+  }
 }
